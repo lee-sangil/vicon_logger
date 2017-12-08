@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <ros/ros.h>
+#include <ros/package.h>
 #include <Eigen/Dense>
 #include <ctime>
 #include <string>

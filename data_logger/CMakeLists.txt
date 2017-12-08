@@ -5,6 +5,7 @@ find_package(catkin REQUIRED cmake_modules)
 find_package(Eigen REQUIRED)
 find_package(catkin REQUIRED COMPONENTS
 		roscpp
+		roslib
 )
 
 catkin_package(

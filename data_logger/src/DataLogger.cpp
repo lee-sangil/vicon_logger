@@ -5,7 +5,10 @@ using namespace SYD;
 
 DataLogger::DataLogger()
 {
-	fileName = "/home/icsl-rover-01/ViconLog/";
+	fileName = ros::package::getPath("data_logger") + "/results/";
+	std::system((std::string("mkdir -p ") + fileName).c_str());
+
+	// fileName = "/home/icsl-rover-01/ViconLog/";
 	time_t rawtime;
 	struct tm *now;
 	time(&rawtime);
