@@ -55,6 +55,17 @@ void current_pose_cb(const geometry_msgs::PoseStamped::ConstPtr& msg)
 	current_pose(6,0) = msg->pose.orientation.w;
 	pose_updated = true;
 }
+void current_pose_cb(const geometry_msgs::Pose::ConstPtr& msg)
+{
+	current_pose(0,0) = msg->position.x;
+	current_pose(1,0) = msg->position.y;
+	current_pose(2,0) = msg->position.z;
+	current_pose(3,0) = msg->orientation.x;
+	current_pose(4,0) = msg->orientation.y;
+	current_pose(5,0) = msg->orientation.z;
+	current_pose(6,0) = msg->orientation.w;
+	pose_updated = true;
+}
 
 int main(int argc, char **argv)
 {
@@ -63,8 +74,9 @@ int main(int argc, char **argv)
 
 	ros::init(argc, argv, "data_logger");
 	ros::NodeHandle nh;
+	std::string pose = "/divo/pose";
 //	ros::Subscriber current_pose_sub = nh.subscribe<geometry_msgs::TransformStamped>("vicon/lsi_asus/lsi_asus", 10, &current_pose_cb);
-	ros::Subscriber current_pose_sub = nh.subscribe<geometry_msgs::PoseStamped>("/maplab_rovio/T_G_I", 10, &current_pose_cb);
+	ros::Subscriber current_pose_sub = nh.subscribe<geometry_msgs::Pose>(pose, 10, &current_pose_cb);
 
 	unsigned long time;
 	while(ros::ok())
